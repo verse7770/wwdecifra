@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedProfessorRouteImport } from './routes/_authenticated/professor'
 import { Route as AuthenticatedQuestoesRouteImport } from './routes/_authenticated/questoes'
+import { Route as AuthenticatedRedacaoRouteImport } from './routes/_authenticated/redacao'
 import { Route as AuthenticatedSimuladosRouteImport } from './routes/_authenticated/simulados'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,9 +37,19 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedProfessorRoute = AuthenticatedProfessorRouteImport.update({
+  id: '/professor',
+  path: '/professor',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedQuestoesRoute = AuthenticatedQuestoesRouteImport.update({
   id: '/questoes',
   path: '/questoes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedRedacaoRoute = AuthenticatedRedacaoRouteImport.update({
+  id: '/redacao',
+  path: '/redacao',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSimuladosRoute = AuthenticatedSimuladosRouteImport.update({
@@ -50,14 +62,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/professor': typeof AuthenticatedProfessorRoute
   '/questoes': typeof AuthenticatedQuestoesRoute
+  '/redacao': typeof AuthenticatedRedacaoRoute
   '/simulados': typeof AuthenticatedSimuladosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/professor': typeof AuthenticatedProfessorRoute
   '/questoes': typeof AuthenticatedQuestoesRoute
+  '/redacao': typeof AuthenticatedRedacaoRoute
   '/simulados': typeof AuthenticatedSimuladosRoute
 }
 export interface FileRoutesById {
@@ -66,21 +82,39 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/professor': typeof AuthenticatedProfessorRoute
   '/_authenticated/questoes': typeof AuthenticatedQuestoesRoute
+  '/_authenticated/redacao': typeof AuthenticatedRedacaoRoute
   '/_authenticated/simulados': typeof AuthenticatedSimuladosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/questoes' | '/simulados'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/professor'
+    | '/questoes'
+    | '/redacao'
+    | '/simulados'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/questoes' | '/simulados'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/professor'
+    | '/questoes'
+    | '/redacao'
+    | '/simulados'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/dashboard'
+    | '/_authenticated/professor'
     | '/_authenticated/questoes'
+    | '/_authenticated/redacao'
     | '/_authenticated/simulados'
   fileRoutesById: FileRoutesById
 }
@@ -120,11 +154,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/professor': {
+      id: '/_authenticated/professor'
+      path: '/professor'
+      fullPath: '/professor'
+      preLoaderRoute: typeof AuthenticatedProfessorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/questoes': {
       id: '/_authenticated/questoes'
       path: '/questoes'
       fullPath: '/questoes'
       preLoaderRoute: typeof AuthenticatedQuestoesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/redacao': {
+      id: '/_authenticated/redacao'
+      path: '/redacao'
+      fullPath: '/redacao'
+      preLoaderRoute: typeof AuthenticatedRedacaoRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/simulados': {
@@ -139,13 +187,17 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedProfessorRoute: typeof AuthenticatedProfessorRoute
   AuthenticatedQuestoesRoute: typeof AuthenticatedQuestoesRoute
+  AuthenticatedRedacaoRoute: typeof AuthenticatedRedacaoRoute
   AuthenticatedSimuladosRoute: typeof AuthenticatedSimuladosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedProfessorRoute: AuthenticatedProfessorRoute,
   AuthenticatedQuestoesRoute: AuthenticatedQuestoesRoute,
+  AuthenticatedRedacaoRoute: AuthenticatedRedacaoRoute,
   AuthenticatedSimuladosRoute: AuthenticatedSimuladosRoute,
 }
 
