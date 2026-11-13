@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAnaliseRouteImport } from './routes/_authenticated/analise'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedMateriasRouteImport } from './routes/_authenticated/materias'
+import { Route as AuthenticatedPlanoRouteImport } from './routes/_authenticated/plano'
 import { Route as AuthenticatedProfessorRouteImport } from './routes/_authenticated/professor'
 import { Route as AuthenticatedQuestoesRouteImport } from './routes/_authenticated/questoes'
 import { Route as AuthenticatedRedacaoRouteImport } from './routes/_authenticated/redacao'
@@ -32,9 +35,24 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAnaliseRoute = AuthenticatedAnaliseRouteImport.update({
+  id: '/analise',
+  path: '/analise',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMateriasRoute = AuthenticatedMateriasRouteImport.update({
+  id: '/materias',
+  path: '/materias',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPlanoRoute = AuthenticatedPlanoRouteImport.update({
+  id: '/plano',
+  path: '/plano',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedProfessorRoute = AuthenticatedProfessorRouteImport.update({
@@ -61,7 +79,10 @@ const AuthenticatedSimuladosRoute = AuthenticatedSimuladosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/analise': typeof AuthenticatedAnaliseRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/materias': typeof AuthenticatedMateriasRoute
+  '/plano': typeof AuthenticatedPlanoRoute
   '/professor': typeof AuthenticatedProfessorRoute
   '/questoes': typeof AuthenticatedQuestoesRoute
   '/redacao': typeof AuthenticatedRedacaoRoute
@@ -70,7 +91,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/analise': typeof AuthenticatedAnaliseRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/materias': typeof AuthenticatedMateriasRoute
+  '/plano': typeof AuthenticatedPlanoRoute
   '/professor': typeof AuthenticatedProfessorRoute
   '/questoes': typeof AuthenticatedQuestoesRoute
   '/redacao': typeof AuthenticatedRedacaoRoute
@@ -81,7 +105,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/analise': typeof AuthenticatedAnaliseRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/materias': typeof AuthenticatedMateriasRoute
+  '/_authenticated/plano': typeof AuthenticatedPlanoRoute
   '/_authenticated/professor': typeof AuthenticatedProfessorRoute
   '/_authenticated/questoes': typeof AuthenticatedQuestoesRoute
   '/_authenticated/redacao': typeof AuthenticatedRedacaoRoute
@@ -92,7 +119,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/analise'
     | '/dashboard'
+    | '/materias'
+    | '/plano'
     | '/professor'
     | '/questoes'
     | '/redacao'
@@ -101,7 +131,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/analise'
     | '/dashboard'
+    | '/materias'
+    | '/plano'
     | '/professor'
     | '/questoes'
     | '/redacao'
@@ -111,7 +144,10 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/analise'
     | '/_authenticated/dashboard'
+    | '/_authenticated/materias'
+    | '/_authenticated/plano'
     | '/_authenticated/professor'
     | '/_authenticated/questoes'
     | '/_authenticated/redacao'
@@ -147,11 +183,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/analise': {
+      id: '/_authenticated/analise'
+      path: '/analise'
+      fullPath: '/analise'
+      preLoaderRoute: typeof AuthenticatedAnaliseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/materias': {
+      id: '/_authenticated/materias'
+      path: '/materias'
+      fullPath: '/materias'
+      preLoaderRoute: typeof AuthenticatedMateriasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/plano': {
+      id: '/_authenticated/plano'
+      path: '/plano'
+      fullPath: '/plano'
+      preLoaderRoute: typeof AuthenticatedPlanoRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/professor': {
@@ -186,7 +243,10 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAnaliseRoute: typeof AuthenticatedAnaliseRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMateriasRoute: typeof AuthenticatedMateriasRoute
+  AuthenticatedPlanoRoute: typeof AuthenticatedPlanoRoute
   AuthenticatedProfessorRoute: typeof AuthenticatedProfessorRoute
   AuthenticatedQuestoesRoute: typeof AuthenticatedQuestoesRoute
   AuthenticatedRedacaoRoute: typeof AuthenticatedRedacaoRoute
@@ -194,7 +254,10 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAnaliseRoute: AuthenticatedAnaliseRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMateriasRoute: AuthenticatedMateriasRoute,
+  AuthenticatedPlanoRoute: AuthenticatedPlanoRoute,
   AuthenticatedProfessorRoute: AuthenticatedProfessorRoute,
   AuthenticatedQuestoesRoute: AuthenticatedQuestoesRoute,
   AuthenticatedRedacaoRoute: AuthenticatedRedacaoRoute,
