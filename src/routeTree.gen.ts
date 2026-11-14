@@ -13,8 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAnaliseRouteImport } from './routes/_authenticated/analise'
+import { Route as AuthenticatedAtualidadesRouteImport } from './routes/_authenticated/atualidades'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDesempenhoRouteImport } from './routes/_authenticated/desempenho'
 import { Route as AuthenticatedMateriasRouteImport } from './routes/_authenticated/materias'
+import { Route as AuthenticatedOutrasProvasRouteImport } from './routes/_authenticated/outras-provas'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedPlanoRouteImport } from './routes/_authenticated/plano'
 import { Route as AuthenticatedProfessorRouteImport } from './routes/_authenticated/professor'
 import { Route as AuthenticatedQuestoesRouteImport } from './routes/_authenticated/questoes'
@@ -40,14 +44,36 @@ const AuthenticatedAnaliseRoute = AuthenticatedAnaliseRouteImport.update({
   path: '/analise',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAtualidadesRoute =
+  AuthenticatedAtualidadesRouteImport.update({
+    id: '/atualidades',
+    path: '/atualidades',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDesempenhoRoute = AuthenticatedDesempenhoRouteImport.update({
+  id: '/desempenho',
+  path: '/desempenho',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedMateriasRoute = AuthenticatedMateriasRouteImport.update({
   id: '/materias',
   path: '/materias',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOutrasProvasRoute =
+  AuthenticatedOutrasProvasRouteImport.update({
+    id: '/outras-provas',
+    path: '/outras-provas',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPlanoRoute = AuthenticatedPlanoRouteImport.update({
@@ -80,8 +106,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/analise': typeof AuthenticatedAnaliseRoute
+  '/atualidades': typeof AuthenticatedAtualidadesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/desempenho': typeof AuthenticatedDesempenhoRoute
   '/materias': typeof AuthenticatedMateriasRoute
+  '/outras-provas': typeof AuthenticatedOutrasProvasRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
   '/plano': typeof AuthenticatedPlanoRoute
   '/professor': typeof AuthenticatedProfessorRoute
   '/questoes': typeof AuthenticatedQuestoesRoute
@@ -92,8 +122,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/analise': typeof AuthenticatedAnaliseRoute
+  '/atualidades': typeof AuthenticatedAtualidadesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/desempenho': typeof AuthenticatedDesempenhoRoute
   '/materias': typeof AuthenticatedMateriasRoute
+  '/outras-provas': typeof AuthenticatedOutrasProvasRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
   '/plano': typeof AuthenticatedPlanoRoute
   '/professor': typeof AuthenticatedProfessorRoute
   '/questoes': typeof AuthenticatedQuestoesRoute
@@ -106,8 +140,12 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/analise': typeof AuthenticatedAnaliseRoute
+  '/_authenticated/atualidades': typeof AuthenticatedAtualidadesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/desempenho': typeof AuthenticatedDesempenhoRoute
   '/_authenticated/materias': typeof AuthenticatedMateriasRoute
+  '/_authenticated/outras-provas': typeof AuthenticatedOutrasProvasRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/plano': typeof AuthenticatedPlanoRoute
   '/_authenticated/professor': typeof AuthenticatedProfessorRoute
   '/_authenticated/questoes': typeof AuthenticatedQuestoesRoute
@@ -120,8 +158,12 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/analise'
+    | '/atualidades'
     | '/dashboard'
+    | '/desempenho'
     | '/materias'
+    | '/outras-provas'
+    | '/perfil'
     | '/plano'
     | '/professor'
     | '/questoes'
@@ -132,8 +174,12 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/analise'
+    | '/atualidades'
     | '/dashboard'
+    | '/desempenho'
     | '/materias'
+    | '/outras-provas'
+    | '/perfil'
     | '/plano'
     | '/professor'
     | '/questoes'
@@ -145,8 +191,12 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/analise'
+    | '/_authenticated/atualidades'
     | '/_authenticated/dashboard'
+    | '/_authenticated/desempenho'
     | '/_authenticated/materias'
+    | '/_authenticated/outras-provas'
+    | '/_authenticated/perfil'
     | '/_authenticated/plano'
     | '/_authenticated/professor'
     | '/_authenticated/questoes'
@@ -190,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAnaliseRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/atualidades': {
+      id: '/_authenticated/atualidades'
+      path: '/atualidades'
+      fullPath: '/atualidades'
+      preLoaderRoute: typeof AuthenticatedAtualidadesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -197,11 +254,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/desempenho': {
+      id: '/_authenticated/desempenho'
+      path: '/desempenho'
+      fullPath: '/desempenho'
+      preLoaderRoute: typeof AuthenticatedDesempenhoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/materias': {
       id: '/_authenticated/materias'
       path: '/materias'
       fullPath: '/materias'
       preLoaderRoute: typeof AuthenticatedMateriasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/outras-provas': {
+      id: '/_authenticated/outras-provas'
+      path: '/outras-provas'
+      fullPath: '/outras-provas'
+      preLoaderRoute: typeof AuthenticatedOutrasProvasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/plano': {
@@ -244,8 +322,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAnaliseRoute: typeof AuthenticatedAnaliseRoute
+  AuthenticatedAtualidadesRoute: typeof AuthenticatedAtualidadesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDesempenhoRoute: typeof AuthenticatedDesempenhoRoute
   AuthenticatedMateriasRoute: typeof AuthenticatedMateriasRoute
+  AuthenticatedOutrasProvasRoute: typeof AuthenticatedOutrasProvasRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedPlanoRoute: typeof AuthenticatedPlanoRoute
   AuthenticatedProfessorRoute: typeof AuthenticatedProfessorRoute
   AuthenticatedQuestoesRoute: typeof AuthenticatedQuestoesRoute
@@ -255,8 +337,12 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAnaliseRoute: AuthenticatedAnaliseRoute,
+  AuthenticatedAtualidadesRoute: AuthenticatedAtualidadesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDesempenhoRoute: AuthenticatedDesempenhoRoute,
   AuthenticatedMateriasRoute: AuthenticatedMateriasRoute,
+  AuthenticatedOutrasProvasRoute: AuthenticatedOutrasProvasRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedPlanoRoute: AuthenticatedPlanoRoute,
   AuthenticatedProfessorRoute: AuthenticatedProfessorRoute,
   AuthenticatedQuestoesRoute: AuthenticatedQuestoesRoute,
