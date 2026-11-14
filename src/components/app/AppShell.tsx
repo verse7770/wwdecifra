@@ -27,7 +27,7 @@ export const NAV = [
 
 const BOTTOM = ["/dashboard", "/questoes", "/professor", "/desempenho"] as const;
 
-function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+function NavLinks({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const { data: isAdmin } = useQuery(isAdminQ);
   return (
     <nav className="flex flex-col gap-0.5">
@@ -58,7 +58,7 @@ export function AppShell() {
   async function signOut() {
     await qc.cancelQueries(); qc.clear();
     await supabase.auth.signOut();
-    navigate({ to: "/auth", replace: true });
+    navigate({ to: "/auth", search: { redirect: undefined }, replace: true });
   }
 
   const sidebar = (onNavigate?: () => void) => (

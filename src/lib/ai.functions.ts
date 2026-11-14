@@ -17,7 +17,7 @@ export const tutorChat = createServerFn({ method: "POST" })
     const reply = await askAI(SYSTEM_TEACHER + extra, data.messages);
     const last = data.messages[data.messages.length - 1];
     await context.supabase.from("tutor_messages").insert([
-      { user_id: context.userId, role: "user", content: last.content },
+      { user_id: context.userId, role: "user", content: last?.content ?? "" },
       { user_id: context.userId, role: "assistant", content: reply },
     ]);
     return { reply };

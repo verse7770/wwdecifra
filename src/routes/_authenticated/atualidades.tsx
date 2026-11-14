@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_authenticated/atualidades")({
   head: () => ({ meta: [{ title: "Atualidades — APROVA+" }, { name: "description", content: "Temas atuais explicados para a prova." }] }),
   component: News,
 });
-const CATS = ["Todas", "Redação", "Ciências Humanas", "Geopolítica", "Meio ambiente", "Tecnologia", "Economia", "Sociedade", "Ciência"];
+const CATS: string[] = ["Todas", "Redação", "Ciências Humanas", "Geopolítica", "Meio ambiente", "Tecnologia", "Economia", "Sociedade", "Ciência"];
 
 function News() {
   const [cat, setCat] = useState("Todas"); const [exp, setExp] = useState<Record<string, string>>({});

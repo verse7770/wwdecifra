@@ -18,7 +18,7 @@ export function QuestionMeta({ q }: { q: Q }) {
 }
 
 export function QuestionCard({ q, onAnswer, favorite, onToggleFav, revealed: revealedProp, chosen: chosenProp, practice = true }: {
-  q: Q; onAnswer?: (label: string, correct: boolean) => void; favorite?: boolean; onToggleFav?: () => void; revealed?: boolean; chosen?: string | null; practice?: boolean;
+  q: Q; onAnswer?: ((label: string, correct: boolean) => void) | undefined; favorite?: boolean | undefined; onToggleFav?: (() => void) | undefined; revealed?: boolean | undefined; chosen?: string | null | undefined; practice?: boolean | undefined;
 }) {
   const [chosen, setChosen] = useState<string | null>(chosenProp ?? null);
   const [revealed, setRevealed] = useState(false);
