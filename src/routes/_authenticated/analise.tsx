@@ -24,9 +24,9 @@ function Analysis() {
   const rows = useMemo(() => {
     const ids = new Set(validExams.map((e) => e.id));
     const by: Record<string, { q: number; eds: Set<string>; perYear: Record<number, number> }> = {};
-    for (const r of inc.data ?? []) { if (!ids.has(r.exam_id)) continue; by[r.topic_id] ??= { q: 0, eds: new Set(), perYear: {} }; by[r.topic_id].q += r.question_count; by[r.topic_id].eds.add(r.exam_id); const y = validExams.find((e) => e.id === r.exam_id)!.year; by[r.topic_id].perYear[y] = r.question_count; }
+    for (const r of inc.data ?? []) { if (!ids.has(r.exam_id)) continue; const b = (by[r.topic_id] ??= { q: 0, eds: new Set(), perYear: {} }); b.q += r.question_count; b.eds.add(r.exam_id); const y = validExams.find((e) => e.id === r.exam_id)?.year ?? 0; b.perYear[y] = r.question_count; }
     return Object.entries(by).map(([tid, v]) => { const t = cat?.topics.find((x) => x.id === tid); const sub = cat?.subjects.find((s) => s.id === t?.subject_id);
-      const years = Object.keys(v.perYear).map(Number).sort(); const trend = years.length >= 2 ? v.perYear[years.at(-1)!] - v.perYear[years[0]] : 0;
+      const years = Object.keys(v.perYear).map(Number).sort(); const trend = years.length >= 2 ? (v.perYear[years[years.length - 1] ?? 0] ?? 0) - (v.perYear[years[0] ?? 0] ?? 0) : 0;
       return { tid, name: t?.name ?? "?", subject: sub?.name ?? "", q: v.q, eds: v.eds.size, trend, pri: priorityFromIncidence(v.eds.size, validExams.length, v.q) };
     }).sort((a, b) => b.q - a.q);
   }, [inc.data, validExams, cat]);

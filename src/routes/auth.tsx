@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/app/Logo";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({ redirect: typeof s.redirect === "string" ? s.redirect : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined }),
   head: () => ({ meta: [{ title: "Entrar — APROVA+" }, { name: "description", content: "Acesse sua conta APROVA+." }, { property: "og:title", content: "Entrar — APROVA+" }, { property: "og:description", content: "Acesse sua conta APROVA+." }] }),
   component: AuthPage,
 });

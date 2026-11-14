@@ -35,14 +35,14 @@ const PAST = [
   [2020, "O estigma associado às doenças mentais na sociedade brasileira"],
   [2019, "Democratização do acesso ao cinema no Brasil"],
 ];
-const TRAIN = ["Os impactos da inteligência artificial no mercado de trabalho brasileiro", "Caminhos para combater a insegurança alimentar no Brasil", "Desafios da mobilidade urbana nas grandes cidades brasileiras", "A desinformação nas redes sociais e seus efeitos na democracia", "Saúde mental dos jovens na era digital"];
+const TRAIN: string[] = ["Os impactos da inteligência artificial no mercado de trabalho brasileiro", "Caminhos para combater a insegurança alimentar no Brasil", "Desafios da mobilidade urbana nas grandes cidades brasileiras", "A desinformação nas redes sociais e seus efeitos na democracia", "Saúde mental dos jovens na era digital"];
 const CONN = { "Adição": "além disso, ademais, outrossim", "Oposição": "entretanto, contudo, todavia, no entanto", "Causa": "porque, visto que, uma vez que", "Conclusão": "portanto, logo, dessa forma, assim", "Exemplificação": "por exemplo, a saber, como" };
 
 type Result = { total: number; competencias: { numero: number; nome: string; nota: number; comentario: string; melhorias: string[] }[]; comentario_geral: string; pontos_fortes: string[] };
 
 function Essay() {
   const qc = useQueryClient();
-  const [theme, setTheme] = useState(TRAIN[0]); const [text, setText] = useState("");
+  const [theme, setTheme] = useState(TRAIN[0] ?? ""); const [text, setText] = useState("");
   const [res, setRes] = useState<Result | null>(null);
   const fn = useServerFn(correctEssay);
   const m = useMutation({ mutationFn: () => fn({ data: { theme, content: text } }), onSuccess: (r) => { setRes(r as Result); qc.invalidateQueries({ queryKey: ["essays"] }); }, onError: (e) => toast.error(e.message) });

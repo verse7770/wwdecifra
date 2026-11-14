@@ -65,7 +65,7 @@ function Sims() {
       ids = ids.sort(() => Math.random() - 0.5).slice(0, n);
       if (!ids.length) throw new Error("Não há questões suficientes para este simulado. Gere questões de treino no banco de questões.");
       const qs = await fetchQuestionsByIds(ids);
-      const title = MODES.find((m) => m[0] === cfg.mode)![1];
+      const title = MODES.find((m) => m[0] === cfg.mode)?.[1] ?? "Simulado";
       const { data, error } = await supabase.from("simulations").insert({ user_id: user, title, mode: cfg.mode, question_ids: ids, duration_minutes: Number(cfg.minutes) }).select("id").single();
       if (error) throw error;
       return { id: data.id, title, qs, minutes: Math.max(1, Number(cfg.minutes)), started: Date.now() };
@@ -74,14 +74,14 @@ function Sims() {
     onError: (e) => toast.error(e.message),
   });
 
-  function go(n: number) { if (!run) return; const id = run.qs[i].id; setTimes((t) => ({ ...t, [id]: (t[id] ?? 0) + Math.round((Date.now() - enter) / 1000) })); setEnter(Date.now()); setI(n); }
+  function go(n: number) { if (!run) return; const id = run.qs[i]?.id ?? ""; setTimes((t) => ({ ...t, [id]: (t[id] ?? 0) + Math.round((Date.now() - enter) / 1000) })); setEnter(Date.now()); setI(n); }
 
   const finishM = useMutation({
     mutationFn: async () => {
       if (!run) return;
-      const id = run.qs[i].id; const tt = { ...times, [id]: (times[id] ?? 0) + Math.round((Date.now() - enter) / 1000) };
+      const id = run.qs[i]?.id ?? ""; const tt = { ...times, [id]: (times[id] ?? 0) + Math.round((Date.now() - enter) / 1000) };
       const user = await uid();
-      const rows = run.qs.filter((q) => ans[q.id]).map((q) => ({ user_id: user, question_id: q.id, chosen_label: ans[q.id], is_correct: ans[q.id] === q.correct_label, time_seconds: tt[q.id] ?? 0, simulation_id: run.id }));
+      const rows = run.qs.filter((q) => ans[q.id]).map((q) => ({ user_id: user, question_id: q.id, chosen_label: ans[q.id] ?? "", is_correct: ans[q.id] === q.correct_label, time_seconds: tt[q.id] ?? 0, simulation_id: run.id }));
       if (rows.length) { const { error } = await supabase.from("answers").insert(rows); if (error) throw error; }
       await supabase.from("simulations").update({ finished_at: new Date().toISOString(), correct: rows.filter((r) => r.is_correct).length, total: run.qs.length }).eq("id", run.id);
       return { qs: run.qs, ans, times: tt };
@@ -90,8 +90,8 @@ function Sims() {
     onError: (e) => toast.error(e.message),
   });
 
-  if (run) {
-    const q = run.qs[i];
+  const q = run?.qs[i];
+  if (run && q) {
     return (
       <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
         <Card>

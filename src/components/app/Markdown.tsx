@@ -9,7 +9,7 @@ export function Markdown({ text }: { text: string }) {
   const flush = () => { if (list.length) { out.push(<ul key={out.length} className="ml-5 list-disc space-y-1">{list.map((l, i) => <li key={i}>{inline(l)}</li>)}</ul>); list = []; } };
   for (const l of lines) {
     const m = l.match(/^\s*(?:[-*]|\d+\.)\s+(.*)/);
-    if (m) { list.push(m[1]); continue; }
+    if (m) { list.push(m[1] ?? ""); continue; }
     flush();
     if (/^#{1,6}\s/.test(l)) out.push(<h4 key={out.length} className="mt-3 font-semibold">{inline(l.replace(/^#+\s/, ""))}</h4>);
     else if (l.trim()) out.push(<p key={out.length}>{inline(l)}</p>);
