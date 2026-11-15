@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules (APROVA+)
+- Never seed or display invented exam statistics; topic incidence only comes from `topic_incidence` rows with validation `validado` on exams with `data_available` — keeps historical data separate from AI output.
+- Questions carry `origin` (oficial/autoral/ia) and `validation`; AI-generated questions are always `origin=ia` and shown as non-official training material.
+- All AI calls live in server functions (`src/lib/ai.functions.ts` + `ai.server.ts`) behind `requireSupabaseAuth`; prompts never ship to the browser.
+- Catalog tables are public-read/admin-write via `has_role`; per-student tables are `auth.uid() = user_id` — admin access is enforced by RLS, the `/admin` route guard is only UX.
+- Signed-in pages live under `src/routes/_authenticated/` and render inside `AppShell` (sidebar desktop, bottom nav mobile).
