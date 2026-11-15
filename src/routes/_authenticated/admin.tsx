@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
 });
 
 const ok = (qc: ReturnType<typeof useQueryClient>, k: string) => () => { toast.success("Salvo"); qc.invalidateQueries({ queryKey: [k] }); };
-async function run<T>(p: PromiseLike<{ error: { message: string } | null; data?: T }>) { const r = await p; if (r.error) throw new Error(r.error.message); return r.data; }
+async function run<T = unknown>(p: PromiseLike<{ error: { message: string } | null; data: T | null }>) { const r = await p; if (r.error) throw new Error(r.error.message); return r.data; }
 
 function Admin() {
   return (
@@ -58,7 +58,7 @@ function Questions() {
   const [f, setF] = useState(blank);
   const add = useMutation({ mutationFn: async () => {
     if (f.origin === "oficial" && !f.source) throw new Error("Questões oficiais exigem a fonte original.");
-    const q = await run<{ id: string }>(supabase.from("questions").insert({ subject_id: f.subject || null, topic_id: f.topic || null, exam_id: f.exam === "none" ? null : f.exam, number: f.number ? Number(f.number) : null, statement: f.statement, correct_label: f.correct, explanation: f.explanation, skill: f.skill || null, difficulty: Number(f.difficulty), origin: f.origin as "oficial", source_url: f.source || null, validation: f.validation as "pendente" }).select("id").single());
+    const q = await run(supabase.from("questions").insert({ subject_id: f.subject || null, topic_id: f.topic || null, exam_id: f.exam === "none" ? null : f.exam, number: f.number ? Number(f.number) : null, statement: f.statement, correct_label: f.correct, explanation: f.explanation, skill: f.skill || null, difficulty: Number(f.difficulty), origin: f.origin as "oficial", source_url: f.source || null, validation: f.validation as "pendente" }).select("id").single());
     await run(supabase.from("question_options").insert(["A", "B", "C", "D", "E"].filter((l) => f[l as "A"]).map((l) => ({ question_id: q!.id, label: l, text: f[l as "A"] }))));
   }, onSuccess: () => { ok(qc, "admin-q")(); setF(blank); }, onError: (e) => toast.error(e.message) });
   const setVal = useMutation({ mutationFn: async ({ id, v }: { id: string; v: string }) => run(supabase.from("questions").update({ validation: v as "validado" }).eq("id", id)), onSuccess: ok(qc, "admin-q") });
