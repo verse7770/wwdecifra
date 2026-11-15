@@ -31,7 +31,7 @@ function News() {
           <Card key={n.id} title={n.title}>
             <p className="text-xs text-muted-foreground">{n.category} · {new Date(n.published_at).toLocaleDateString("pt-BR")} · <a href={n.source_url} target="_blank" rel="noreferrer" className="text-brand underline">{n.source_name}</a></p>
             <p className="mt-2 text-sm">{n.summary}</p>
-            {exp[n.id] ? <div className="mt-3 rounded-xl bg-muted p-4"><Markdown text={exp[n.id]} /></div> :
+            {exp[n.id] ? <div className="mt-3 rounded-xl bg-muted p-4"><Markdown text={exp[n.id] ?? ""} /></div> :
               <Button size="sm" variant="outline" className="mt-3" disabled={m.isPending} onClick={() => m.mutate(n)}>Como isso cai na prova?</Button>}
           </Card>))}
     </div>
