@@ -58,8 +58,8 @@ function Dashboard() {
         <p className="text-xs uppercase tracking-[0.2em] opacity-70">Painel WW DECIFRA</p>
         <p className="text-sm opacity-75">{new Date().toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" })}</p>
         <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Olá, {p?.full_name?.split(" ")[0] ?? "estudante"}!</h1>
-        <p className="mt-2 max-w-xl text-sm opacity-85">{p?.goal ? `Objetivo: ${p.goal}` : "Defina seu objetivo e sua prova no plano de estudos."} · Prova: <b>{p?.exam_name ?? "ENEM"}</b></p>
-        {!p?.exam_date && <Button asChild variant="hero" size="sm" className="mt-4"><Link to="/plano">Configurar meu plano</Link></Button>}
+        <p className="mt-2 max-w-xl text-sm opacity-85">{p?.goal ? `Objetivo: ${p.goal}` : "Defina seu objetivo e sua prova em Minha Jornada."} · Prova: <b>{p?.exam_name ?? "ENEM"}</b></p>
+        {!p?.exam_date && <Button asChild variant="hero" size="sm" className="mt-4"><Link to="/plano">Configurar minha jornada</Link></Button>}
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
@@ -78,7 +78,7 @@ function Dashboard() {
               <li key={i} className="flex gap-3 rounded-xl border p-3"><div className="font-display text-lg font-bold text-brand">{i + 1}</div>
                 <div className="flex-1"><div className="font-medium">{it.assunto} <span className="text-xs text-muted-foreground">· {it.materia} · {it.minutos} min · {it.acao}</span></div><p className="text-sm text-muted-foreground">{it.motivo}</p></div></li>))}
             </ul>
-          ) : <p className="text-sm text-muted-foreground">A IA cruza suas dificuldades e seu desempenho real nas questões para sugerir o foco de hoje.</p>}
+          ) : <p className="text-sm text-muted-foreground">A Decifra IA cruza suas dificuldades e seu desempenho real nas questões para sugerir o foco de hoje.</p>}
           <p className="mt-3 text-[11px] text-muted-foreground">Recomendação da Decifra IA — não é uma previsão do que cairá na prova.</p>
         </Card>
 
@@ -94,7 +94,7 @@ function Dashboard() {
             <div className="h-56"><ResponsiveContainer><AreaChart data={weekly}><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--brand)" stopOpacity={0.4} /><stop offset="100%" stopColor="var(--brand)" stopOpacity={0} /></linearGradient></defs>
               <XAxis dataKey="semana" fontSize={11} stroke="var(--muted-foreground)" /><YAxis domain={[0, 100]} fontSize={11} stroke="var(--muted-foreground)" /><Tooltip />
               <Area dataKey="acertos" stroke="var(--brand)" fill="url(#g)" strokeWidth={2} connectNulls /></AreaChart></ResponsiveContainer></div>
-          ) : <Notice>Resolva questões no <Link to="/questoes" className="font-semibold text-brand">banco de questões</Link> para ver sua evolução.</Notice>}
+          ) : <Notice>Resolva questões no <Link to="/questoes" className="font-semibold text-brand">Central de Questões</Link> para ver sua evolução.</Notice>}
         </Card>
 
         <Card title="Matérias">

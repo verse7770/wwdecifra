@@ -1,7 +1,7 @@
 import type React from "react";
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Home, CalendarDays, BookOpen, BarChart3, ListChecks, Timer, PenLine, Bot, Landmark, TrendingUp, User, Shield, Newspaper, LogOut, Menu } from "lucide-react";
+import { Home, Sparkles, CalendarDays, BookOpen, BarChart3, ListChecks, Timer, PenLine, Landmark, TrendingUp, User, Shield, Newspaper, LogOut, Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdminQ, profileQ, level } from "@/lib/data";
 import { Logo } from "./Logo";
@@ -11,17 +11,17 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 
 export const NAV = [
-  { to: "/dashboard", label: "Início", icon: Home },
+  { to: "/dashboard", label: "Painel", short: "Painel", icon: Home },
   { to: "/plano", label: "Minha Jornada", icon: CalendarDays },
   { to: "/materias", label: "Matérias", icon: BookOpen },
   { to: "/analise", label: "Inteligência de Provas", icon: BarChart3 },
-  { to: "/questoes", label: "Central de Questões", icon: ListChecks },
+  { to: "/questoes", label: "Central de Questões", short: "Questões", icon: ListChecks },
   { to: "/simulados", label: "Desafios Decifra", icon: Timer },
-  { to: "/redacao", label: "Redação", icon: PenLine },
-  { to: "/professor", label: "Decifra IA", icon: Bot },
+  { to: "/redacao", label: "Laboratório de Redação", icon: PenLine },
+  { to: "/professor", label: "Decifra IA", short: "Decifra IA", icon: Sparkles },
   { to: "/outras-provas", label: "Outras provas", icon: Landmark },
   { to: "/atualidades", label: "Radar de Atualidades", icon: Newspaper },
-  { to: "/desempenho", label: "Minha Evolução", icon: TrendingUp },
+  { to: "/desempenho", label: "Minha Evolução", short: "Evolução", icon: TrendingUp },
   { to: "/perfil", label: "Perfil", icon: User },
 ] as const;
 
@@ -91,11 +91,11 @@ export function AppShell() {
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 lg:px-8 lg:py-8"><Outlet /></main>
       </div>
       <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card/95 backdrop-blur lg:hidden">
-        {NAV.filter((n) => (BOTTOM as readonly string[]).includes(n.to)).map(({ to, label, icon: Icon }) => (
+        {NAV.filter((n) => (BOTTOM as readonly string[]).includes(n.to)).map((n) => { const { to, icon: Icon } = n; const label = "short" in n ? n.short : n.label; return (
           <Link key={to} to={to} className="flex flex-col items-center gap-1 py-2 text-[11px] text-muted-foreground" activeProps={{ className: "!text-brand" }}>
-            <Icon className="size-5" />{label.split(" ")[0]}
+            <Icon className="size-5" />{label}
           </Link>
-        ))}
+        ); })}
         <button onClick={() => setOpen(true)} className="flex flex-col items-center gap-1 py-2 text-[11px] text-muted-foreground"><Menu className="size-5" />Mais</button>
       </nav>
     </div>
