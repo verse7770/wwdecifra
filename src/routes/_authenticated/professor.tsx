@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/professor")({
   component: Tutor,
 });
 
-const MODES: [string, string][] = [["explicar", "Explicar matéria"], ["passo a passo", "Resolver passo a passo"], ["exercícios", "Criar exercícios"], ["resumo", "Criar resumo"], ["mapa mental", "Mapa mental (em tópicos)"], ["revisão", "Revisão personalizada"], ["por que errei", "Por que a alternativa está errada"]];
+const MODES: [string, string][] = [["explicar", "Explicar matéria"], ["passo a passo", "Resolver passo a passo"], ["exercícios", "Criar exercícios"], ["resumo", "Criar resumo"], ["mapa mental", "Mapa mental (em tópicos)"], ["revisão", "Revisão personalizada"], ["redação", "Ajuda na redação"], ["por que errei", "Por que a alternativa está errada"]];
 type M = { role: "user" | "assistant"; content: string };
 
 function Tutor() {

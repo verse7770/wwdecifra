@@ -55,6 +55,7 @@ function Dashboard() {
   return (
     <div className="space-y-6">
       <div className="rounded-3xl bg-hero p-6 text-hero-foreground shadow-glow animate-rise sm:p-8">
+        <p className="text-xs uppercase tracking-[0.2em] opacity-70">Painel WW DECIFRA</p>
         <p className="text-sm opacity-75">{new Date().toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long" })}</p>
         <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Olá, {p?.full_name?.split(" ")[0] ?? "estudante"}!</h1>
         <p className="mt-2 max-w-xl text-sm opacity-85">{p?.goal ? `Objetivo: ${p.goal}` : "Defina seu objetivo e sua prova no plano de estudos."} · Prova: <b>{p?.exam_name ?? "ENEM"}</b></p>
@@ -71,14 +72,14 @@ function Dashboard() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <Card title="O que estudar hoje?" className="lg:col-span-2" action={<Button size="sm" variant="brand" onClick={() => recM.mutate()} disabled={recM.isPending}>{recM.isPending ? "Analisando..." : recM.data ? "Atualizar" : "Gerar recomendações"}</Button>}>
+        <Card title="O que decifrar hoje?" className="lg:col-span-2" action={<Button size="sm" variant="brand" onClick={() => recM.mutate()} disabled={recM.isPending}>{recM.isPending ? "Analisando..." : recM.data ? "Atualizar" : "Gerar recomendações"}</Button>}>
           {recM.data ? (
             <ul className="space-y-3">{recM.data.itens.map((it, i) => (
               <li key={i} className="flex gap-3 rounded-xl border p-3"><div className="font-display text-lg font-bold text-brand">{i + 1}</div>
                 <div className="flex-1"><div className="font-medium">{it.assunto} <span className="text-xs text-muted-foreground">· {it.materia} · {it.minutos} min · {it.acao}</span></div><p className="text-sm text-muted-foreground">{it.motivo}</p></div></li>))}
             </ul>
           ) : <p className="text-sm text-muted-foreground">A IA cruza suas dificuldades e seu desempenho real nas questões para sugerir o foco de hoje.</p>}
-          <p className="mt-3 text-[11px] text-muted-foreground">Recomendação da IA — não é uma previsão do que cairá na prova.</p>
+          <p className="mt-3 text-[11px] text-muted-foreground">Recomendação da Decifra IA — não é uma previsão do que cairá na prova.</p>
         </Card>
 
         <Card title="Meta diária">

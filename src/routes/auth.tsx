@@ -45,10 +45,10 @@ function AuthPage() {
 
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
-      <div className="hidden bg-hero p-12 text-hero-foreground lg:flex lg:flex-col lg:justify-between">
+      <div className="relative hidden overflow-hidden bg-hero p-12 text-hero-foreground lg:flex lg:flex-col lg:justify-between">
         <Link to="/"><Logo /></Link>
-        <div><h2 className="text-4xl font-bold leading-tight">Estude o que importa.<br />Do jeito que você aprende.</h2>
-          <p className="mt-4 max-w-md opacity-80">Professor IA, questões, simulados, redação corrigida e um plano que se adapta ao seu desempenho.</p></div>
+        <div><h2 className="text-5xl font-extrabold leading-tight">Não decore.<br /><span className="text-brand">Decifre.</span></h2>
+          <p className="mt-4 max-w-md opacity-80">Descubra o que mais cai, onde você erra e como evoluir — com a Decifra IA ao seu lado.</p></div>
         <p className="text-xs opacity-60">Recomendações da IA são estimativas — não garantias de aprovação.</p>
       </div>
       <div className="flex items-center justify-center p-6">
