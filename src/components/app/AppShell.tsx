@@ -1,7 +1,7 @@
 import type React from "react";
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Home, Sparkles, CalendarDays, BookOpen, BarChart3, ListChecks, Timer, PenLine, Bot, Landmark, TrendingUp, User, Shield, Newspaper, LogOut, Menu } from "lucide-react";
+import { Home, Sparkles, CalendarDays, BookOpen, BarChart3, ListChecks, Timer, PenLine, Landmark, TrendingUp, User, Shield, Newspaper, LogOut, Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdminQ, profileQ, level } from "@/lib/data";
 import { Logo } from "./Logo";
