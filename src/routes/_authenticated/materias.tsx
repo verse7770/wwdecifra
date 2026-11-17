@@ -7,7 +7,7 @@ import { Card } from "@/components/app/Stat";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/materias")({
-  head: () => ({ meta: [{ title: "Matérias — APROVA+" }, { name: "description", content: "Áreas, matérias e assuntos do ENEM com seu domínio em cada um." }] }),
+  head: () => ({ meta: [{ title: "Matérias — WW DECIFRA" }, { name: "description", content: "Áreas, matérias e assuntos do ENEM com seu domínio em cada um." }] }),
   component: Subjects,
 });
 

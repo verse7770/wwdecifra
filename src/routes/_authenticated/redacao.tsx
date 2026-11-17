@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/_authenticated/redacao")({
-  head: () => ({ meta: [{ title: "Redação — APROVA+" }, { name: "description", content: "Guia da redação do ENEM e correção por competência com IA." }] }),
+  head: () => ({ meta: [{ title: "Laboratório de Redação — WW DECIFRA" }, { name: "description", content: "Guia da redação do ENEM e correção por competência com IA." }] }),
   component: Essay,
 });
 
@@ -51,7 +51,7 @@ function Essay() {
 
   return (
     <div>
-      <PageHeader title="Redação ENEM" subtitle="Aprenda a estrutura e treine com correção por competência." />
+      <PageHeader title="Laboratório de Redação" subtitle="Aprenda a estrutura e treine com correção por competência." />
       <Tabs defaultValue="corrigir">
         <TabsList className="mb-4 flex-wrap"><TabsTrigger value="corrigir">Corretor IA</TabsTrigger><TabsTrigger value="guia">Guia</TabsTrigger><TabsTrigger value="temas">Temas</TabsTrigger><TabsTrigger value="historico">Minhas redações</TabsTrigger></TabsList>
         <TabsContent value="corrigir" className="space-y-4">

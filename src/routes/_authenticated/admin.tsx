@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
     const { data } = await supabase.rpc("has_role", { _user_id: id, _role: "admin" });
     if (!data) throw redirect({ to: "/dashboard" });
   },
-  head: () => ({ meta: [{ title: "Administração — APROVA+" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Administração — WW DECIFRA" }, { name: "robots", content: "noindex" }] }),
   component: Admin,
 });
 
@@ -45,7 +45,7 @@ function Stats() {
   const s = useQuery({ queryKey: ["admin-stats"], queryFn: async () => {
     const c = async (t: "profiles" | "answers" | "simulations" | "essays" | "questions" | "study_plans") => (await supabase.from(t).select("*", { count: "exact", head: true })).count ?? 0;
     const [u, a, si, e, q, p] = await Promise.all([c("profiles"), c("answers"), c("simulations"), c("essays"), c("questions"), c("study_plans")]);
-    return { "Estudantes": u, "Respostas": a, "Simulados": si, "Redações": e, "Questões": q, "Planos": p };
+    return { "Estudantes": u, "Respostas": a, "Desafios Decifra": si, "Redações": e, "Questões": q, "Planos": p };
   } });
   return <div className="grid grid-cols-2 gap-3 md:grid-cols-3">{Object.entries(s.data ?? {}).map(([k, v]) => <Card key={k}><div className="font-display text-2xl font-bold">{v}</div><div className="text-xs text-muted-foreground">{k}</div></Card>)}</div>;
 }
@@ -117,7 +117,7 @@ function Incidence() {
   const add = useMutation({ mutationFn: () => { if (!f.source) throw new Error("Informe a fonte."); return run(supabase.from("topic_incidence").upsert({ topic_id: f.topic, exam_id: f.exam, question_count: Number(f.count), source_url: f.source, validation: "validado", updated_at: new Date().toISOString() }, { onConflict: "topic_id,exam_id" })); }, onSuccess: ok(qc, "incidence-admin"), onError: (e) => toast.error(e.message) });
   return (
     <div className="space-y-4">
-      <Notice>Registre apenas contagens verificadas na prova e gabarito oficiais. Esses dados alimentam a Análise do ENEM.</Notice>
+      <Notice>Registre apenas contagens verificadas na prova e gabarito oficiais. Esses dados alimentam a Inteligência de Provas.</Notice>
       <Card title="Registrar incidência"><div className="grid gap-3 sm:grid-cols-3">
         <Sel label="Matéria" value={f.subject} onChange={(v) => setF({ ...f, subject: v, topic: "" })} items={cat?.subjects.map((s) => [s.id, s.name]) ?? []} />
         <Sel label="Assunto" value={f.topic} onChange={(v) => setF({ ...f, topic: v })} items={cat?.topics.filter((t) => t.subject_id === f.subject).map((t) => [t.id, t.name]) ?? []} />

@@ -7,7 +7,7 @@ import { PageHeader, Notice } from "@/components/app/AppShell";
 import { Card } from "@/components/app/Stat";
 
 export const Route = createFileRoute("/_authenticated/desempenho")({
-  head: () => ({ meta: [{ title: "Desempenho — APROVA+" }, { name: "description", content: "Gráficos da sua evolução." }] }),
+  head: () => ({ meta: [{ title: "Minha Evolução — WW DECIFRA" }, { name: "description", content: "Gráficos da sua evolução." }] }),
   component: Perf,
 });
 
@@ -23,13 +23,13 @@ function Perf() {
   const time: Record<string, number> = {}; for (const s of sessions) time[s.studied_on.slice(5)] = (time[s.studied_on.slice(5)] ?? 0) + s.minutes;
   const timeD = Object.entries(time).slice(-14).map(([d, m]) => ({ d, m }));
   const simD = [...(sims.data ?? [])].reverse().map((s, i) => ({ n: `#${i + 1}`, pct: s.total ? Math.round(((s.correct ?? 0) / s.total) * 100) : 0 }));
-  if (!answers.length && !sessions.length) return <div><PageHeader title="Desempenho" /><Notice>Resolva questões ou registre tempo de estudo para ver seus gráficos.</Notice></div>;
+  if (!answers.length && !sessions.length) return <div><PageHeader title="Minha Evolução" /><Notice>Resolva questões ou registre tempo de estudo para ver seus gráficos.</Notice></div>;
   return (
     <div className="space-y-6">
-      <PageHeader title="Desempenho" subtitle="Sua evolução real, calculada a partir das suas respostas." />
+      <PageHeader title="Minha Evolução" subtitle="Sua evolução real, calculada a partir das suas respostas." />
       <div className="grid gap-6 lg:grid-cols-2">
         <Card title="Evolução de acertos (%)"><div className="h-56"><ResponsiveContainer><LineChart data={evo}><XAxis dataKey="d" fontSize={11} /><YAxis domain={[0, 100]} fontSize={11} /><Tooltip /><Line dataKey="pct" stroke="var(--brand)" strokeWidth={2} /></LineChart></ResponsiveContainer></div></Card>
-        <Card title="Desempenho por matéria (%)"><div className="h-56"><ResponsiveContainer><BarChart data={bySubj}><XAxis dataKey="name" fontSize={10} /><YAxis domain={[0, 100]} fontSize={11} /><Tooltip /><Bar dataKey="pct" fill="var(--success)" radius={4} /></BarChart></ResponsiveContainer></div></Card>
+        <Card title="Minha Evolução por matéria (%)"><div className="h-56"><ResponsiveContainer><BarChart data={bySubj}><XAxis dataKey="name" fontSize={10} /><YAxis domain={[0, 100]} fontSize={11} /><Tooltip /><Bar dataKey="pct" fill="var(--success)" radius={4} /></BarChart></ResponsiveContainer></div></Card>
         <Card title="Tempo de estudo (min/dia)"><div className="h-56"><ResponsiveContainer><BarChart data={timeD}><XAxis dataKey="d" fontSize={11} /><YAxis fontSize={11} /><Tooltip /><Bar dataKey="m" fill="var(--brand)" radius={4} /></BarChart></ResponsiveContainer></div></Card>
         <Card title="Comparação entre simulados (%)">{simD.length ? <div className="h-56"><ResponsiveContainer><BarChart data={simD}><XAxis dataKey="n" fontSize={11} /><YAxis domain={[0, 100]} fontSize={11} /><Tooltip /><Bar dataKey="pct" fill="var(--warning)" radius={4} /></BarChart></ResponsiveContainer></div> : <p className="text-sm text-muted-foreground">Nenhum simulado concluído.</p>}</Card>
       </div>

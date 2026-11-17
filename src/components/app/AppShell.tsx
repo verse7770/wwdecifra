@@ -12,16 +12,16 @@ import { useState } from "react";
 
 export const NAV = [
   { to: "/dashboard", label: "Início", icon: Home },
-  { to: "/plano", label: "Plano de estudos", icon: CalendarDays },
+  { to: "/plano", label: "Minha Jornada", icon: CalendarDays },
   { to: "/materias", label: "Matérias", icon: BookOpen },
-  { to: "/analise", label: "Análise do ENEM", icon: BarChart3 },
-  { to: "/questoes", label: "Banco de questões", icon: ListChecks },
-  { to: "/simulados", label: "Simulados", icon: Timer },
+  { to: "/analise", label: "Inteligência de Provas", icon: BarChart3 },
+  { to: "/questoes", label: "Central de Questões", icon: ListChecks },
+  { to: "/simulados", label: "Desafios Decifra", icon: Timer },
   { to: "/redacao", label: "Redação", icon: PenLine },
-  { to: "/professor", label: "Professor IA", icon: Bot },
+  { to: "/professor", label: "Decifra IA", icon: Bot },
   { to: "/outras-provas", label: "Outras provas", icon: Landmark },
-  { to: "/atualidades", label: "Atualidades", icon: Newspaper },
-  { to: "/desempenho", label: "Desempenho", icon: TrendingUp },
+  { to: "/atualidades", label: "Radar de Atualidades", icon: Newspaper },
+  { to: "/desempenho", label: "Minha Evolução", icon: TrendingUp },
   { to: "/perfil", label: "Perfil", icon: User },
 ] as const;
 

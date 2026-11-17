@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/_authenticated/plano")({
-  head: () => ({ meta: [{ title: "Plano de estudos — APROVA+" }, { name: "description", content: "Cronograma personalizado que se adapta ao seu desempenho." }] }),
+  head: () => ({ meta: [{ title: "Minha Jornada — WW DECIFRA" }, { name: "description", content: "Cronograma personalizado que se adapta ao seu desempenho." }] }),
   component: Plan,
 });
 
@@ -37,7 +37,7 @@ function Plan() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Plano de estudos" subtitle="A IA monta sua semana e reforça o que você mais erra." />
+      <PageHeader title="Minha Jornada" subtitle="A IA monta sua semana e reforça o que você mais erra." />
       <Card title="Seus dados">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div><Label className="mb-1 block text-xs text-muted-foreground">Prova</Label><Input value={f.exam} onChange={(e) => setF({ ...f, exam: e.target.value })} /></div>

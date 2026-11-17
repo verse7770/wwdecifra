@@ -17,17 +17,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sel } from "@/components/app/Sel";
 
 export const Route = createFileRoute("/_authenticated/professor")({
-  head: () => ({ meta: [{ title: "Professor IA — APROVA+" }, { name: "description", content: "Seu professor particular com inteligência artificial." }] }),
+  head: () => ({ meta: [{ title: "Decifra IA — WW DECIFRA" }, { name: "description", content: "Seu professor particular com inteligência artificial." }] }),
   component: Tutor,
 });
 
-const MODES: [string, string][] = [["explicar", "Explicar matéria"], ["passo a passo", "Resolver passo a passo"], ["exercícios", "Criar exercícios"], ["resumo", "Criar resumo"], ["mapa mental", "Mapa mental (em tópicos)"], ["revisão", "Revisão personalizada"], ["por que errei", "Por que a alternativa está errada"]];
+const MODES: [string, string][] = [["explicar", "Explicar matéria"], ["passo a passo", "Resolver passo a passo"], ["exercícios", "Criar exercícios"], ["resumo", "Criar resumo"], ["mapa mental", "Mapa mental (em tópicos)"], ["revisão", "Revisão personalizada"], ["redação", "Ajuda na redação"], ["por que errei", "Por que a alternativa está errada"]];
 type M = { role: "user" | "assistant"; content: string };
 
 function Tutor() {
   return (
     <div>
-      <PageHeader title="Professor IA" subtitle="Disponível 24h. Ele ensina o raciocínio, não só a resposta." />
+      <PageHeader title="Decifra IA" subtitle="Disponível 24h. Ele ensina o raciocínio, não só a resposta." />
       <Tabs defaultValue="chat"><TabsList className="mb-4"><TabsTrigger value="chat">Conversa</TabsTrigger><TabsTrigger value="zero">Aprender do Zero</TabsTrigger></TabsList>
         <TabsContent value="chat"><Chat /></TabsContent><TabsContent value="zero"><Zero /></TabsContent></Tabs>
     </div>
@@ -49,7 +49,7 @@ function Chat() {
       <div className="h-[50vh] space-y-3 overflow-y-auto rounded-xl bg-muted/50 p-3">
         {!msgs.length && <p className="p-6 text-center text-sm text-muted-foreground">Pergunte qualquer coisa: "Me explique funções do 2º grau com um exemplo do dia a dia".</p>}
         {msgs.map((x, i) => <div key={i} className={`max-w-[85%] rounded-2xl px-4 py-2.5 ${x.role === "user" ? "ml-auto bg-brand text-brand-foreground" : "bg-card shadow-card"}`}>{x.role === "user" ? <p className="whitespace-pre-wrap text-sm">{x.content}</p> : <Markdown text={x.content} />}</div>)}
-        {m.isPending && <div className="text-sm text-muted-foreground">Professor pensando...</div>}<div ref={end} />
+        {m.isPending && <div className="text-sm text-muted-foreground">Decifra IA pensando...</div>}<div ref={end} />
       </div>
       <div className="mt-3 flex gap-2"><Textarea rows={2} value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} placeholder="Digite sua dúvida..." />
         <Button variant="brand" onClick={send} disabled={m.isPending} aria-label="Enviar"><Send /></Button></div>
