@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/_authenticated/perfil")({
-  head: () => ({ meta: [{ title: "Perfil — APROVA+" }, { name: "description", content: "Seu perfil, nível e conquistas." }] }),
+  head: () => ({ meta: [{ title: "Perfil — WW DECIFRA" }, { name: "description", content: "Seu perfil, nível e conquistas." }] }),
   component: Profile,
 });
 

@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Início — APROVA+" }, { name: "description", content: "Seu painel de estudos." }] }),
+  head: () => ({ meta: [{ title: "Painel WW DECIFRA — WW DECIFRA" }, { name: "description", content: "Seu painel de estudos." }] }),
   component: Dashboard,
 });
 

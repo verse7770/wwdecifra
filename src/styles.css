@@ -121,6 +121,8 @@
   --sidebar-accent-foreground: oklch(0.99 0 0);
   --sidebar-border: oklch(0.32 0.07 263);
   --sidebar-ring: oklch(0.62 0.2 255);
+  --logo-tile: oklch(0.22 0.08 263);
+  --logo-ink: oklch(0.98 0.01 250);
   --hero-foreground: oklch(0.98 0.01 250);
   --gradient-hero: linear-gradient(135deg, oklch(0.24 0.09 263), oklch(0.36 0.15 258) 55%, oklch(0.55 0.2 252));
   --gradient-brand: linear-gradient(135deg, var(--brand), oklch(0.7 0.16 230));

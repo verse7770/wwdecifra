@@ -6,9 +6,9 @@ import { ThemeToggle } from "@/components/app/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "APROVA+ — Estude para ENEM, vestibulares e concursos com IA" },
+    { title: "WW DECIFRA — Estude para ENEM, vestibulares e concursos com IA" },
     { name: "description", content: "Professor particular com IA, banco de questões, simulados, correção de redação e plano de estudos adaptativo." },
-    { property: "og:title", content: "APROVA+ — Estude com inteligência" },
+    { property: "og:title", content: "WW DECIFRA — Estude com inteligência" },
     { property: "og:description", content: "Professor IA, simulados, redação e plano adaptativo para ENEM e vestibulares." },
   ] }),
   component: Landing,
@@ -39,7 +39,7 @@ function Landing() {
           <div key={t} className="rounded-2xl border bg-card p-6 shadow-card"><I className="size-6 text-brand" /><h3 className="mt-4 font-semibold">{t}</h3><p className="mt-1 text-sm text-muted-foreground">{d}</p></div>
         ))}
       </section>
-      <footer className="border-t py-8 text-center text-xs text-muted-foreground">APROVA+ · Estimativas da IA não equivalem a notas oficiais do INEP.</footer>
+      <footer className="border-t py-8 text-center text-xs text-muted-foreground">WW DECIFRA · Estimativas da IA não equivalem a notas oficiais do INEP.</footer>
     </div>
   );
 }

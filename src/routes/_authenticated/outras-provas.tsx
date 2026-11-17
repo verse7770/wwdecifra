@@ -9,7 +9,7 @@ import { Sel } from "@/components/app/Sel";
 import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/_authenticated/outras-provas")({
-  head: () => ({ meta: [{ title: "Outras provas — APROVA+" }, { name: "description", content: "Vestibulares e concursos públicos." }] }),
+  head: () => ({ meta: [{ title: "Outras provas — WW DECIFRA" }, { name: "description", content: "Vestibulares e concursos públicos." }] }),
   component: Other,
 });
 

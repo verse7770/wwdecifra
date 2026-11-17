@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle2, XCircle, Clock, Percent } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/simulados")({
-  head: () => ({ meta: [{ title: "Simulados — APROVA+" }, { name: "description", content: "Simulados cronometrados com relatório de desempenho." }] }),
+  head: () => ({ meta: [{ title: "Desafios Decifra — WW DECIFRA" }, { name: "description", content: "Desafios Decifra cronometrados com relatório de desempenho." }] }),
   component: Sims,
 });
 
@@ -113,7 +113,7 @@ function Sims() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Simulados" subtitle="Monte um simulado, resolva com cronômetro e receba o relatório." />
+      <PageHeader title="Desafios Decifra" subtitle="Monte um simulado, resolva com cronômetro e receba o relatório." />
       {report && <Report r={report} subjects={cat?.subjects ?? []} topics={cat?.topics ?? []} />}
       <Card title="Novo simulado">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -151,7 +151,7 @@ function Report({ r, subjects, topics }: { r: { qs: Q[]; ans: Record<string, str
         <div><div className="mb-1 font-semibold text-success">Assuntos dominados</div>{good.length ? good.map(([k]) => <div key={k}>{name(k)}</div>) : "—"}</div>
         <div><div className="mb-1 font-semibold text-destructive">Assuntos com dificuldade</div>{bad.length ? bad.map(([k, v]) => <div key={k}>{name(k)} ({v.c}/{v.t})</div>) : "—"}</div>
       </div>
-      {bad.length > 0 && <p className="mt-4 text-sm">Recomendação: revise a teoria de <b>{bad.map(([k]) => name(k)).slice(0, 3).join(", ")}</b> com o Professor IA e refaça as questões erradas no banco.</p>}
+      {bad.length > 0 && <p className="mt-4 text-sm">Recomendação: revise a teoria de <b>{bad.map(([k]) => name(k)).slice(0, 3).join(", ")}</b> com o Decifra IA e refaça as questões erradas no banco.</p>}
       <div className="mt-4"><Notice tone="warn">Estimativa TRI não exibida: a nota pela TRI depende dos parâmetros oficiais de cada item (calibrados pelo INEP), que questões de treino não possuem. O aproveitamento acima não equivale à nota oficial do ENEM.</Notice></div>
     </Card>
   );

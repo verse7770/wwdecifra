@@ -10,7 +10,7 @@ import { Card } from "@/components/app/Stat";
 import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/_authenticated/analise")({
-  head: () => ({ meta: [{ title: "Análise do ENEM — APROVA+" }, { name: "description", content: "Incidência histórica por assunto baseada em dados oficiais validados." }] }),
+  head: () => ({ meta: [{ title: "Inteligência de Provas — WW DECIFRA" }, { name: "description", content: "Incidência histórica por assunto baseada em dados oficiais validados." }] }),
   component: Analysis,
 });
 
@@ -36,7 +36,7 @@ function Analysis() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Análise do ENEM (2024–2026)" subtitle="Frequência histórica baseada somente em dados oficiais validados." />
+      <PageHeader title="Inteligência de Provas (2024–2026)" subtitle="Frequência histórica baseada somente em dados oficiais validados." />
       <Card title="Edições analisadas">
         <div className="grid gap-3 sm:grid-cols-3">{enem.map((e) => (
           <div key={e.id} className="rounded-xl border p-4"><div className="flex items-center justify-between"><b className="font-display text-lg">ENEM {e.year}</b>

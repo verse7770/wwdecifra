@@ -17,7 +17,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/_authenticated/questoes")({
-  head: () => ({ meta: [{ title: "Banco de questões — APROVA+" }, { name: "description", content: "Resolva questões por matéria, assunto e dificuldade." }] }),
+  head: () => ({ meta: [{ title: "Central de Questões — WW DECIFRA" }, { name: "description", content: "Resolva questões por matéria, assunto e dificuldade." }] }),
   component: Bank,
 });
 
@@ -76,7 +76,7 @@ function Bank() {
 
   return (
     <div>
-      <PageHeader title="Banco de questões" subtitle="Filtre, resolva e acompanhe seus acertos por assunto." />
+      <PageHeader title="Central de Questões" subtitle="Filtre, resolva e acompanhe seus acertos por assunto." />
       <Card className="mb-6">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           <Sel label="Matéria" value={f.subject} onChange={(v) => setF({ ...f, subject: v, topic: ALL })} items={[[ALL, "Todas"], ...(cat?.subjects.map((s) => [s.id, s.name] as [string, string]) ?? [])]} />

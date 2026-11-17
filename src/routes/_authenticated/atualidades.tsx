@@ -11,7 +11,7 @@ import { Markdown } from "@/components/app/Markdown";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/atualidades")({
-  head: () => ({ meta: [{ title: "Atualidades — APROVA+" }, { name: "description", content: "Temas atuais explicados para a prova." }] }),
+  head: () => ({ meta: [{ title: "Radar de Atualidades — WW DECIFRA" }, { name: "description", content: "Temas atuais explicados para a prova." }] }),
   component: News,
 });
 const CATS: string[] = ["Todas", "Redação", "Ciências Humanas", "Geopolítica", "Meio ambiente", "Tecnologia", "Economia", "Sociedade", "Ciência"];
@@ -24,7 +24,7 @@ function News() {
   const list = (news.data ?? []).filter((n) => cat === "Todas" || n.category === cat);
   return (
     <div className="space-y-6">
-      <PageHeader title="Atualidades" subtitle="Notícias de fontes confiáveis conectadas aos conteúdos da prova." />
+      <PageHeader title="Radar de Atualidades" subtitle="Notícias de fontes confiáveis conectadas aos conteúdos da prova." />
       <div className="flex flex-wrap gap-2">{CATS.map((c) => <Button key={c} size="sm" variant={c === cat ? "default" : "outline"} onClick={() => setCat(c)}>{c}</Button>)}</div>
       {!list.length ? <Notice>Nenhuma notícia publicada ainda. A equipe adiciona notícias com fonte e data pelo painel administrativo.</Notice> :
         list.map((n) => (
